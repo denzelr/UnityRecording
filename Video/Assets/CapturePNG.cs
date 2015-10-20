@@ -7,21 +7,23 @@ public class CapturePNG : MonoBehaviour {
 	int counter = 0;
 
 	void FixedUpdate(){
-		if (record == true) {
-			InvokeRepeating ("Screenshot", 1, 0.04F);
-		}
+
 	}
 
 	void Screenshot() {
 		counter++;
 		Application.CaptureScreenshot ("Output/" + counter + ".png");
+		Debug.Log ("PNG Created " + counter);
 	}
 
 	public void invoke(){
-		if (record == false) {
+		/*if (record == false) {
 			record = true;
 		} else {
 			record = false;
-		}
+		}*/
+		//if (record == true) {
+		InvokeRepeating ("Screenshot", 0, 0.04F);
+		//}
 	}
 }
