@@ -1,29 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.IO;
 
 public class CapturePNG : MonoBehaviour {
 
-	public bool record = false;
-	int counter = 0;
+	private bool record = false;
+	private int counter = 0;
+	private readonly string outPath = "Output/";
 
-	void FixedUpdate(){
-
+	void Start(){
+		if (!Directory.Exists (outPath)) {
+			Directory.CreateDirectory(outPath);
+		}
 	}
 
 	void Screenshot() {
 		counter++;
-		Application.CaptureScreenshot ("Output/" + counter + ".png");
+		Application.CaptureScreenshot (outPath + counter + ".png");
 		Debug.Log ("PNG Created " + counter);
 	}
 
 	public void invoke(){
-		/*if (record == false) {
-			record = true;
+		record = !record;
+		if (record == true) {
+			InvokeRepeating ("Screenshot", 0, 0.04F);
 		} else {
-			record = false;
-		}*/
-		//if (record == true) {
-		InvokeRepeating ("Screenshot", 0, 0.04F);
-		//}
+			Debug.Log ("stopping");
+			CancelInvoke ("Screenshot");
+		}
 	}
 }
