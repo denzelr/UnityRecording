@@ -28,7 +28,7 @@ public class CapturePNG : MonoBehaviour {
 			yield return new WaitForSeconds(recordStep);
 		}
 		MakeAvi ();
-		yield return null;
+		yield break;
 	}
 
 	public void invoke(){
@@ -38,12 +38,11 @@ public class CapturePNG : MonoBehaviour {
 		}
 	}
 	private void MakeAvi(){
-		//this does not work yet
+		//this doesn't work
 		UnityEngine.Debug.Log ("making avi");
 		Process p = new Process();
 		p.StartInfo.UseShellExecute = false;
 		p.StartInfo.RedirectStandardOutput = true;
-		p.StartInfo
 		p.StartInfo.FileName = "ffmpeg -framerate 24 -i Output/%08d.png -pix_fmt yuv420p out.mp4";
 		p.Start();
 		p.WaitForExit ();
