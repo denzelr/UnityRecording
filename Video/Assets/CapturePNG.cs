@@ -74,8 +74,8 @@ public class CapturePNG : MonoBehaviour
     }
     private void MakeAvi()
     {
-        string cmdTxt = "/c ffmpeg -framerate 24 -i Output/%08d.png out" + vidCount + ".mp4";
-        var process = Process.Start("C:\\Windows\\System32\\cmd.exe", cmdTxt);
+        string cmdTxt = "-framerate 24 -i Output/%08d.png out" + vidCount + ".mp4";
+        var process = Process.Start("FFMPEG\\bin\\ffmpeg.exe", cmdTxt);
         process.WaitForExit();
         vidCount++;
     }
